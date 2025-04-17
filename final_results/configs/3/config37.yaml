@@ -1,0 +1,64 @@
+dataset:
+  original_path: data/3/original_data.csv
+  masked_path: data/3/config37_masked.csv
+  target_variable: income
+  model_script: data/3/model4.py
+masking:
+  attributes:
+    age:
+    - function: suppress
+      params: {}
+    workclass:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    fnlwgt:
+    - function: generalize
+      params:
+        M: 3
+    education:
+    - function: suppress
+      params: {}
+    education_num:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    marital_status:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    occupation:
+    - function: erase_digits
+      params:
+        num_digits: 2
+    relationship:
+    - function: suppress
+      params: {}
+    race:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    sex:
+    - function: erase_digits
+      params:
+        num_digits: 2
+    capital_gain:
+    - function: generalize
+      params:
+        M: 5
+    capital_loss:
+    - function: suppress
+      params: {}
+    hours_per_week:
+    - function: suppress
+      params: {}
+    native_country:
+    - function: erase_digits
+      params:
+        num_digits: 3
+reconstruction:
+  ipf_params:
+    max_iter: 1000
+    tol: 1.0e-06
+  algorithm: sampling
+  output_path: results/3/config37_reconstruction.tsv

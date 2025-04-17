@@ -1,0 +1,99 @@
+dataset:
+  original_path: data/2/original_data.csv
+  masked_path: data/2/config09_masked.csv
+  target_variable: is_booking
+  model_script: data/2/model4.py
+masking:
+  attributes:
+    serial:
+    - function: generalize
+      params:
+        M: 5
+    date_time:
+    - function: generalize
+      params:
+        M: 4
+    site_name:
+    - function: suppress
+      params: {}
+    posa_continent:
+    - function: suppress
+      params: {}
+    user_location_country:
+    - function: generalize
+      params:
+        M: 3
+    user_location_region:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    user_location_city:
+    - function: erase_digits
+      params:
+        num_digits: 3
+    orig_destination_distance:
+    - function: suppress
+      params: {}
+    user_id:
+    - function: suppress
+      params: {}
+    is_mobile:
+    - function: suppress
+      params: {}
+    is_package:
+    - function: generalize
+      params:
+        M: 3
+    channel:
+    - function: generalize
+      params:
+        M: 4
+    srch_ci:
+    - function: suppress
+      params: {}
+    srch_co:
+    - function: suppress
+      params: {}
+    srch_adults_cnt:
+    - function: erase_digits
+      params:
+        num_digits: 3
+    srch_children_cnt:
+    - function: erase_digits
+      params:
+        num_digits: 3
+    srch_rm_cnt:
+    - function: suppress
+      params: {}
+    srch_destination_id:
+    - function: erase_digits
+      params:
+        num_digits: 3
+    srch_destination_type_id:
+    - function: erase_digits
+      params:
+        num_digits: 2
+    cnt:
+    - function: generalize
+      params:
+        M: 3
+    hotel_continent:
+    - function: suppress
+      params: {}
+    hotel_country:
+    - function: suppress
+      params: {}
+    hotel_market:
+    - function: erase_digits
+      params:
+        num_digits: 2
+    hotel_cluster:
+    - function: erase_digits
+      params:
+        num_digits: 1
+reconstruction:
+  ipf_params:
+    max_iter: 1000
+    tol: 1.0e-06
+  algorithm: sampling
+  output_path: results/2/config09_reconstruction.tsv

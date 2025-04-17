@@ -1,0 +1,43 @@
+dataset:
+  original_path: data/1/original_data.csv
+  masked_path: data/1/config19_masked.csv
+  target_variable: Air Quality
+  model_script: data/1/model4.py
+masking:
+  attributes:
+    Temperature:
+    - function: suppress
+      params: {}
+    Humidity:
+    - function: erase_digits
+      params:
+        num_digits: 3
+    PM2.5:
+    - function: suppress
+      params: {}
+    PM10:
+    - function: suppress
+      params: {}
+    NO2:
+    - function: suppress
+      params: {}
+    SO2:
+    - function: erase_digits
+      params:
+        num_digits: 1
+    CO:
+    - function: suppress
+      params: {}
+    Proximity_to_Industrial_Areas:
+    - function: suppress
+      params: {}
+    Population_Density:
+    - function: erase_digits
+      params:
+        num_digits: 3
+reconstruction:
+  ipf_params:
+    max_iter: 1000
+    tol: 1.0e-06
+  algorithm: sampling
+  output_path: results/1/config19_reconstruction.tsv
